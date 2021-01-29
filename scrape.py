@@ -9,5 +9,6 @@ cibc_url = "https://www.cibc.com/en/personal-banking/credit-cards/all-credit-car
 response = http.request('GET', cibc_url)
 soup = BeautifulSoup(response.data, 'lxml')
 
-match = soup.find('h3', class_="product-title")
-print(match)
+for productTitle in soup.find_all('h3', class_="product-title"):
+  creditCardName = productTitle.b.text
+  print(creditCardName)
